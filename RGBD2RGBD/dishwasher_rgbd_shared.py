@@ -256,7 +256,7 @@ def train_discriminator(transparent,
 
 
 def batch_it(tensor):
-    return ntensor, 0)
+    return tf.expand_dims(tensor, 0)
 
 
 rmse = lambda error: np.sqrt(np.mean(np.square(error)))
@@ -337,7 +337,7 @@ class MyLRSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
         self.batch_size = batch_size
 
     def __call__(self, step):
-        return tf.cond((step / self.batch_size) < 100, lambda: self.initial_learning_rate, lambda: self.initial_learning_rate - ((step / self.batch_size) - 100) * (self.initial_learning_rate / 100))
+        return tf.cond((step / self.batch_size) < 100, lambda: tf.cast(self.initial_learning_rate, dtype=tf.float32), lambda: tf.cast(self.initial_learning_rate - ((step / self.batch_size) - 100.) * (self.initial_learning_rate / 100.), dtype=tf.float32))
 
 
 def get_networks(g_in_channels, g_out_channels, f_in_channels, f_out_channels, generator_dropout=0.5, conv_after=False, use_attention=False):

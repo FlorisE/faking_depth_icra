@@ -136,6 +136,7 @@ def train(num_epochs,
         disc_o_losses_epoch = []
 
         for transparent_, opaque_ in dataset.shuffle(bs).prefetch(tf.data.AUTOTUNE).take(bs):
+            print('.')
             transparent = tf.concat([transparent_[0], transparent_[1]], 3)
             opaque = tf.concat([opaque_[0], opaque_[1]], 3)
 
