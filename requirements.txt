@@ -1,0 +1,11 @@
+Imath==0.0.2
+matplotlib==3.1.2
+numpy==1.21.2
+opencv_contrib_python==4.5.3.56
+opencv_python_headless==4.5.2.54
+OpenEXR==1.3.9
+pandas==1.2.5
+Pillow==9.5.0
+skimage==0.0
+tensorflow==2.12.0
+tensorflow_addons==0.20.0

@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 import cv2
 import glob
+import os
 import pickle
 import random
 import sys
@@ -70,7 +71,9 @@ def get_opaque_dataset(data_root_train, batch_size=BATCH_SIZE, min_depth=MIN_DEP
         batch_size
     )
     
-def get_train_dataset(data_root_train='../data/dishwasher2/unpaired/', min_depth=MIN_DEPTH, max_depth=MAX_DEPTH, min_clip=None):
+def get_train_dataset(data_root_train='../data/unpaired/', min_depth=MIN_DEPTH, max_depth=MAX_DEPTH, min_clip=None):
+    if not os.path.exists(data_root_train):
+        raise ValueError(f'Dataset not found at {data_root_train}')
     transparent_dataset_rz = get_transparent_dataset(data_root_train, min_depth=min_depth, max_depth=max_depth, min_clip=min_clip)
     opaque_dataset_rz = get_opaque_dataset(data_root_train, min_depth=min_depth, max_depth=max_depth, min_clip=min_clip)
     
@@ -152,13 +155,17 @@ def get_test_valid_dataset(data_root, min_depth, max_depth, min_clip):
     return list(transparent_matching), list(opaque_matching), masks_matching
 
 
-def get_test_dataset(data_root='../data/dishwasher2/test', min_depth=MIN_DEPTH, max_depth=MAX_DEPTH, min_clip=None):
+def get_test_dataset(data_root='../data/test', min_depth=MIN_DEPTH, max_depth=MAX_DEPTH, min_clip=None):
+    if not os.path.exists(data_root):
+        raise ValueError(f'Dataset not found at {data_root}')
     transparent_matching_list, opaque_matching_list, masks_matching = \
         get_test_valid_dataset(data_root, min_depth, max_depth, min_clip)
     return transparent_matching_list, opaque_matching_list, masks_matching
 
 
-def get_valid_dataset(data_root='../data/dishwasher2/val', min_depth=MIN_DEPTH, max_depth=MAX_DEPTH, min_clip=None):
+def get_valid_dataset(data_root='../data/val', min_depth=MIN_DEPTH, max_depth=MAX_DEPTH, min_clip=None):
+    if not os.path.exists(data_root):
+        raise ValueError(f'Dataset not found at {data_root}')
     transparent_matching_list, opaque_matching_list, masks_matching = \
         get_test_valid_dataset(data_root, min_depth, max_depth, min_clip)
     return transparent_matching_list, opaque_matching_list, masks_matching
