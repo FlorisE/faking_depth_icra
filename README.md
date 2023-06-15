@@ -11,6 +11,10 @@ Some notebooks for evaluating the results are also included, but these notebooks
 
 For more details (and datasets), please check our [web site](https://florise.github.io/faking_depth_web/).
 
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) license:
+"This license lets others remix, adapt, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms."
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
 If you want to cite this work:
 
 ```
